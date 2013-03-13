@@ -7,7 +7,7 @@ Feature: Merge Articles
     Given the blog is set up
     And I am logged into the admin panel
 		
-  Scenario: An admin can merge articles
+  Scenario: An admin should see merge articles button
     Given I am on the all articles page
 	When I follow "Edit"
 	Then I should see "New article"

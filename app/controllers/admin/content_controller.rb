@@ -241,7 +241,7 @@ class Admin::ContentController < Admin::BaseController
     @resources = Resource.by_created_at
   end
 
-  def merge_with(other_article_id)
-    
+  def merge
+    @article = Article.find(params[:id])
   end
 end
