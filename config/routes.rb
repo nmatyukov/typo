@@ -113,7 +113,11 @@ Rails.application.routes.draw do
   end
 
   #temp
-  match 'admin/content/merge' => 'admin/content#merge', :as => :merge
+  # resources :content
+  # namespace :admin do
+  #   resources :content
+  # end
+  match 'admin/content/merge/:id' => 'admin/content#merge', :as => :merge
 
   # default
   root :to  => 'articles#index', :format => false

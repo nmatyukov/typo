@@ -113,6 +113,18 @@ class Admin::ContentController < Admin::BaseController
     render :text => nil
   end
 
+  def merge
+    # return(redirect_to :action => 'index')
+    debugger
+    @article = Article.find(params[:id])
+    unless @article.access_by? current_user
+      redirect_to :action => 'index'
+      flash[:error] = _("Error, you are not allowed to perform this action")
+      return
+    end
+    new_or_edit
+  end
+
   protected
 
   def get_fresh_or_existing_draft_for_article
@@ -239,9 +251,5 @@ class Admin::ContentController < Admin::BaseController
 
   def setup_resources
     @resources = Resource.by_created_at
-  end
-
-  def merge
-    @article = Article.find(params[:id])
   end
 end
