@@ -5,7 +5,7 @@
 
 <% end %>
 
-<%- if params[:action] == "edit" || "merge"%>
+<%- if params[:action] == "edit"%>
   <div class=''>
     <h4><%= _("Merge Articles") %></h4>
     <%= form_tag(merge_path, :method => "get") do %>
