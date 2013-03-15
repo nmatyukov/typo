@@ -120,7 +120,7 @@ class Admin::ContentController < Admin::BaseController
     if Article.exists?(id)
       @article = Article.find(id)
     else
-      redirect_to :action => 'new'
+      redirect_to :action => 'index'
       flash[:error] = _("Error, new article")
       return
     end
