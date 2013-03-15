@@ -116,14 +116,27 @@ class Admin::ContentController < Admin::BaseController
   def merge
     # return(redirect_to :action => 'index')
     @article = Article.find(params[:id])
-    @merging_article = Article.find(params[:merge_with])
-    debugger
-
+    
     unless @article.access_by? current_user
       redirect_to :action => 'index'
       flash[:error] = _("Error, you are not allowed to perform this action")
       return
     end
+    
+    merge_id = params[:merge_with].to_i
+    
+    if Article.exists?(merge_id)
+      # debugger
+      @merging_article = Article.find(merge_id)
+      @article.body = @article.body + @merging_article.body
+      @article.save
+    else
+      # debugger
+      flash[:error] = _("Error, article doesn't exists")
+    end
+    # debugger
+
+    # render 'new'
     new_or_edit
   end
 
