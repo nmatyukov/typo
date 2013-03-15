@@ -139,6 +139,7 @@ class Admin::ContentController < Admin::BaseController
       @merging_article = Article.find(merge_id)
       @article.body = @article.body + @merging_article.body
       @article.save
+      @merging_article.destroy
     else
       # debugger
       flash[:error] = _("Error, article doesn't exists")
